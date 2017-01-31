@@ -3,7 +3,7 @@ import re
 
 ## SI 206 - W17 - HW3
 ## COMMENT WITH:
-## Your section day/time:
+## Your section day/time: Thursday/3:00
 ## Any names of people you worked with on this assignment:
 
 #####################
@@ -20,6 +20,12 @@ import re
 
 ## Write code to define your parse_counted_words function here.
 
+def parse_counted_words(string):
+    m = re.findall("([0-9]+) ([^A-z]*[A-z]+)", string)
+    if m:
+        return m[-1]
+    else:
+        return None
 
 
 
@@ -35,6 +41,9 @@ import re
 
 ## (d) Write Python code to determine how many of these paths describe a Microsoft file (a file that EITHER ends with .docx OR .xlsx, but nothing else counts) where the file name ends in a digit. Save that total in the variable microsoft_files_num.
 
+f = open("computer_paths.txt", "r")
+m = re.findall("[^/]$", f)
+file_paths_num = len(m)
 
 
 
