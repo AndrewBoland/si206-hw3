@@ -21,7 +21,7 @@ import re
 ## Write code to define your parse_counted_words function here.
 
 def parse_counted_words(string):
-    m = re.findall("([0-9]+) ([^A-z]*[A-z]+)", string)
+    m = re.findall("([0-9]+) ([^A-z]?[A-z]+)", string)
     if m:
         return m[-1]
     else:
@@ -50,20 +50,31 @@ microsoft_files_num= 0
 
 for path in f:
     path = path.rstrip('\n')
-    #doesn't end in a /
-    #isFile = re.findall("[^/]$", path)
-    #ends in a .something
-    isFile = re.findall("\..+$", path)
-    isFullPath = re.findall("^[~/]", path)
 
+    ## (a)
+    isFile = re.findall("\..+$", path)
+    ## (b)
+    isFullPath = re.findall("^[~/]", path)
+    ## (c)
+    isPythonCourse = re.findall("SI206/.+\.py$", path)
+    ## (d)
+    isMicrosoftFile = re.findall("[0-9]\.xlsx|\.docx$", path)
+
+    ## (a)
     if isFile:
         file_paths_num += 1
 
+    ## (b)
     if isFullPath:
         full_paths_num += 1
 
+    ## (c)
+    if isPythonCourse:
+        python_course_paths += 1
 
-
+    ## (d)
+    if isMicrosoftFile:
+        microsoft_files_num += 1
 
 
 ## We have provided unit tests in this file. To earn the full 500 points, you'll need to pass all of the tests and will need to have followed the instructions.
